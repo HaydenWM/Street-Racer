@@ -18,6 +18,8 @@ public class Order {
 	public static JLabel Main_Title;
 	public static JPanel Game_Panel;
 	public static JButton Start_Button;
+	public static JButton Start_Button2;
+
 	public static JButton Car;
 
 	public static JButton Up;
@@ -77,6 +79,7 @@ public class Order {
 	public static JButton Enemy1;
 
 	public static void main(String[] args) {
+		//BACKGROUND();//temp
 		TITLE_SCREEN();
 	}
 
@@ -114,9 +117,69 @@ public class Order {
 			Main_Title.setVisible(false);
 			playing = false;
 			Start_Button.setVisible(false);
-			START();
+			
+			Up.setVisible(true);
+			Down.setVisible(true);
+			Car.setVisible(true);
+			});
+			// makes the basic swing stuff
 
-		});
+			// up
+			Up = new JButton("Up");
+			Up.setBounds(650, 350, 100, 100);
+			Game_Panel.add(Up);
+			Up.setVisible(false);
+
+			// down
+			Down = new JButton("Down");
+			Down.setBounds(650, 450, 100, 100);
+			Game_Panel.add(Down);
+			Down.setVisible(false);
+			// int loop_cnt = 0;
+			// for(int i =1; i >=0; i++) {
+			// System.out.println("Test" + (loop_cnt += 1) + i);}
+
+			Car = new JButton("Car");
+			Car.setBounds(25, (int) Position1, 100, 100); // (25, 25, 100, 100)
+			Game_Panel.add(Car);
+			Car.setVisible(false);
+			Car.addActionListener((ActionEvent u) -> {
+				System.out.println("HONK");
+				
+			});
+			Up.addActionListener((ActionEvent v) -> {
+				if (Pos1 == true) {
+
+				} else if (Pos2 == true) {
+					Pos2 = false;
+					Pos1 = true;
+					Car.setBounds(25, (int) Position1, 100, 100);
+				} else if (Pos3 == true) {
+					Pos3 = false;
+					Pos2 = true;
+					Car.setBounds(25, (int) Position2, 100, 100);
+				}
+			});
+			Down.addActionListener((ActionEvent m) -> {
+				if (Pos1 == true) {
+					Pos1 = false;
+					Pos2 = true;
+					Car.setBounds(25, (int) Position2, 100, 100);
+				} else if (Pos2 == true) {
+					Pos2 = false;
+					Pos3 = true;
+					Car.setBounds(25, (int) Position3, 100, 100);
+				} else if (Pos3 == true) {
+				}
+			});
+			Start_Button2 = new JButton("Start");
+			Start_Button2.setFont(new Font("Comic Sans", Font.BOLD, 55));
+			Start_Button2.setBounds(300, 400, 300, 100);
+			Start_Button2.setVisible(true);
+			Game_Panel.add(Start_Button2);
+			Start_Button2.addActionListener((ActionEvent b) -> {
+				START();
+			});
 
 	}
 
@@ -141,56 +204,9 @@ public class Order {
 	}
 
 	private static void BACKGROUND() {
-		// makes the basic swing stuff
+		
 
-		// up
-		Up = new JButton("Up");
-		Up.setBounds(650, 350, 100, 100);
-		Game_Panel.add(Up);
-		Up.setVisible(true);
-
-		// down
-		Down = new JButton("Down");
-		Down.setBounds(650, 450, 100, 100);
-		Game_Panel.add(Down);
-		Down.setVisible(true);
-		// int loop_cnt = 0;
-		// for(int i =1; i >=0; i++) {
-		// System.out.println("Test" + (loop_cnt += 1) + i);}
-
-		Car = new JButton("Car");
-		Car.setBounds(25, (int) Position1, 100, 100); // (25, 25, 100, 100)
-		Game_Panel.add(Car);
-		Car.setVisible(true);
-		Car.addActionListener((ActionEvent b) -> {
-			System.out.println("HONK");
-		});
-
-		Up.addActionListener((ActionEvent b) -> {
-			if (Pos1 == true) {
-
-			} else if (Pos2 == true) {
-				Pos2 = false;
-				Pos1 = true;
-				Car.setBounds(25, (int) Position1, 100, 100);
-			} else if (Pos3 == true) {
-				Pos3 = false;
-				Pos2 = true;
-				Car.setBounds(25, (int) Position2, 100, 100);
-			}
-		});
-		Down.addActionListener((ActionEvent b) -> {
-			if (Pos1 == true) {
-				Pos1 = false;
-				Pos2 = true;
-				Car.setBounds(25, (int) Position2, 100, 100);
-			} else if (Pos2 == true) {
-				Pos2 = false;
-				Pos3 = true;
-				Car.setBounds(25, (int) Position3, 100, 100);
-			} else if (Pos3 == true) {
-			}
-		});
+	
 	}
 
 	private static void ENEMY() {
@@ -217,9 +233,18 @@ public class Order {
 				
 				// int int_random = 1;
 
+				
+				
+				
+				
 				if (int_random == 0) {
+					
 					System.out.println("1 is used");
-
+					try {
+						Thread.sleep(25);
+					}catch(Exception e){
+						System.out.println("code beter lol");
+					}
 					E1Pos1 = true;
 					Enemy1.setBounds((int) E1Position1, 25, 100, 100);
 				}
