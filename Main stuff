@@ -1,0 +1,335 @@
+package Connor;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Dimension;
+import javax.swing.SwingWorker;
+
+public class BackGround {
+	public static JFrame Game_Frame;
+	public static JLabel Main_Title;
+	public static JPanel Game_Panel;
+	public static JButton Start_Button;
+	public static JButton Start_Button2;
+
+	public static JButton Car;
+
+	public static JButton Up;
+	public static JButton Down;
+	public static double Position1 = 25;
+	public static double Position2 = 150;
+	public static double Position3 = 275;
+	public static boolean Pos1 = true;
+	public static boolean Pos2 = false;
+	public static boolean Pos3 = false;
+
+	public static double E1Position1 = 625;
+	public static double E1Position2 = 500;
+	public static double E1Position3 = 375;
+	public static double E1Position4 = 250;
+	public static double E1Position5 = 125;
+	public static double E1Position6 = 5;
+
+	public static boolean E1Pos1 = false;
+	public static boolean E1Pos2 = false;
+	public static boolean E1Pos3 = false;
+	public static boolean E1Pos4 = false;
+	public static boolean E1Pos5 = false;
+	public static boolean E1Pos6 = false;
+
+	public static double E2Position1 = 625;
+	public static double E2Position2 = 500;
+	public static double E2Position3 = 375;
+	public static double E2Position4 = 250;
+	public static double E2Position5 = 125;
+	public static double E2Position6 = 5;
+
+	public static boolean E2Pos1 = false;
+	public static boolean E2Pos2 = false;
+	public static boolean E2Pos3 = false;
+	public static boolean E2Pos4 = false;
+	public static boolean E2Pos5 = false;
+	public static boolean E2Pos6 = false;
+
+	public static double E3Position1 = 625;
+	public static double E3Position2 = 500;
+	public static double E3Position3 = 375;
+	public static double E3Position4 = 250;
+	public static double E3Position5 = 125;
+	public static double E3Position6 = 5;
+
+	public static boolean E3Pos1 = false;
+	public static boolean E3Pos2 = false;
+	public static boolean E3Pos3 = false;
+	public static boolean E3Pos4 = false;
+	public static boolean E3Pos5 = false;
+	public static boolean E3Pos6 = false;
+
+	public static boolean playing = false;
+	public static JButton Enemy3;
+	public static JButton Enemy2;
+	public static JButton Enemy1;
+
+	public static void main(String[] args) {
+		// BACKGROUND();//temp
+		TITLE_SCREEN();
+	}
+
+	private static void TITLE_SCREEN()
+
+	{// title screen obviously
+		// Makes frame used for game
+		Game_Frame = new JFrame();
+		Game_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Game_Frame.setSize(800, 600);
+		Game_Frame.setVisible(true);
+		Game_Frame.setResizable(false);
+
+		// makes panel used throughout
+		Game_Panel = new JPanel();
+		Game_Panel.setBackground(Color.LIGHT_GRAY);
+		Game_Frame.add(Game_Panel);
+		Game_Panel.setLayout(null);
+		Game_Panel.setVisible(true);
+
+		// Makes title
+		Main_Title = new JLabel("Connor Cart");
+		Main_Title.setFont(new Font("Arial", Font.BOLD, 25));
+		Main_Title.setBounds(150, 100, 600, 200);
+		Main_Title.setVisible(true);
+		Game_Panel.add(Main_Title);
+
+		// Start Button that starts game
+		Start_Button = new JButton("Start");
+		Start_Button.setFont(new Font("Comic Sans", Font.BOLD, 55));
+		Start_Button.setBounds(300, 400, 300, 100);
+		Start_Button.setVisible(true);
+		Game_Panel.add(Start_Button);
+		Start_Button.addActionListener((ActionEvent b) -> {
+			Main_Title.setVisible(false);
+			Start_Button.setVisible(false);
+			Up.setVisible(true);
+			Down.setVisible(true);
+			Car.setVisible(true);
+		});
+		// makes the basic swing stuff
+		Enemy1 = new JButton("BadGuy1");
+		Game_Panel.add(Enemy1);
+
+		Enemy2 = new JButton("BadGuy2");
+		Game_Panel.add(Enemy2);
+
+		Enemy3 = new JButton("BadGuy3");
+		Game_Panel.add(Enemy3);
+		// up
+		Up = new JButton("Up");
+		Up.setBounds(650, 350, 100, 100);
+		Game_Panel.add(Up);
+		Up.setVisible(false);
+
+		// down
+		Down = new JButton("Down");
+		Down.setBounds(650, 450, 100, 100);
+		Game_Panel.add(Down);
+		Down.setVisible(false);
+		// int loop_cnt = 0;
+		// for(int i =1; i >=0; i++) {
+		// System.out.println("Test" + (loop_cnt += 1) + i);}
+
+		Car = new JButton("Car");
+		Car.setBounds(25, (int) Position1, 100, 100); // (25, 25, 100, 100)
+		Game_Panel.add(Car);
+		Car.setVisible(false);
+		Car.addActionListener((ActionEvent u) -> {
+			System.out.println("HONK");
+
+		});
+	
+		Start_Button2 = new JButton("Start");
+		Start_Button2.setFont(new Font("Comic Sans", Font.BOLD, 55));
+		Start_Button2.setBounds(300, 400, 300, 100);
+		Start_Button2.setVisible(true);
+		Game_Panel.add(Start_Button2);
+		Start_Button2.addActionListener((ActionEvent b) -> {
+			///need to call to the other class 
+			TEST();
+			playing = true;
+			Start_Button2.setVisible(false);	
+			});
+	}
+		
+	
+
+	//public static void START() {
+		public static void TEST() {
+		}{
+		Connor.Connor();
+		ENEMY();
+		}
+
+	
+
+	private static void LOOSECHECK() {
+
+		// hopefully checks if you loose or not make one for each loose scenario
+		//int loop_cnt = 0;
+		//for (int i = 5; i <= 1; i++) {
+			//if (Pos1 == true && E1Pos5 == true) {
+				//System.out.println("Whoops");
+		//	}
+	//	}
+
+	}
+
+    private static void Test(){
+	}
+	
+
+	private static void ENEMY() {
+		playing = true;
+
+		System.out.println(playing);
+		
+	if(playing == true)
+	{
+
+		while (playing == true) {// Beginning of while
+			try {// Beginning of try
+				// Make invisble while loading
+				Thread.sleep(2500);
+			}
+
+			catch (InterruptedException e) {// Beginning of catch
+				e.printStackTrace();
+			} // End of catch
+
+			System.out.println("Enemy is used");
+			
+			int Enemeyspawn = 0;
+
+			System.out.println(Enemeyspawn);
+
+			Random rand = new Random();
+			int upperbound = 3;
+
+			int int_random = rand.nextInt(upperbound);
+			System.out.println(int_random);
+
+			// int int_random = 1;
+
+			// logic for moving
+			if (int_random == 0) {
+				System.out.println("1 is used");
+				E1Pos1 = true;
+				Enemy1.setVisible(true);
+				Enemy1.setBounds((int) E1Position1, 25, 100, 100);
+			}
+			if (E1Pos1 = true) {
+				E1Pos1 = false;
+				E1Pos2 = true;
+				Enemy1.setBounds((int) E1Position2, 25, 100, 100);
+			}
+			if (E1Pos2 = true) {
+				E1Pos2 = false;
+				E1Pos3 = true;
+				Enemy1.setBounds((int) E1Position3, 25, 100, 100);
+			}
+			if (E1Pos3 = true) {
+				E1Pos3 = false;
+				E1Pos4 = true;
+				Enemy1.setBounds((int) E1Position4, 25, 100, 100);
+			}
+			if (E1Pos4 = true) {
+				E1Pos4 = false;
+				E1Pos5 = true;
+				Enemy1.setBounds((int) E1Position5, 25, 100, 100);
+			}
+			if (E1Pos5 = true) {
+				E1Pos5 = false;
+				E1Pos6 = true;
+				Enemy1.setBounds((int) E1Position6, 25, 100, 100);
+			}
+
+			if (int_random == 1) {
+				System.out.println("2 is used");
+				E2Pos1 = true;
+				Enemy2.setVisible(true);
+				System.out.print("HFBDNOVJFSIRPFKJ");
+				Enemy2.setBounds(300, (int) E2Position1, 100, 100);
+			}
+
+			if (E2Pos1 = true) {
+
+				E2Pos1 = false;
+				E2Pos2 = true;
+				Enemy2.setBounds((int) E2Position2, 150, 100, 100);
+			}
+			if (E2Pos2 = true) {
+				E2Pos2 = false;
+				E2Pos3 = true;
+				Enemy2.setBounds((int) E2Position3, 150, 100, 100);
+			}
+			if (E2Pos3 = true) {
+				E2Pos3 = false;
+				E2Pos4 = true;
+				Enemy2.setBounds((int) E2Position4, 150, 100, 100);
+			}
+			if (E2Pos4 = true) {
+				E2Pos4 = false;
+				E2Pos5 = true;
+				Enemy2.setBounds((int) E2Position5, 150, 100, 100);
+			}
+			if (E2Pos5 = true) {
+				E2Pos5 = false;
+				E2Pos6 = true;
+				Enemy2.setBounds((int) E2Position6, 150, 100, 100);
+			}
+
+			if (int_random == 2) {
+				System.out.println("3 is used");
+
+				E3Pos1 = true;
+				Enemy3.setBounds((int) E3Position1, 275, 100, 100);
+			}
+			if (E3Pos1 = true) {
+				E3Pos1 = false;
+				E3Pos2 = true;
+				Enemy3.setBounds((int) E3Position2, 275, 100, 100);
+			}
+			if (E3Pos2 = true) {
+				E3Pos2 = false;
+				E3Pos3 = true;
+				Enemy3.setBounds((int) E3Position3, 275, 100, 100);
+			}
+			if (E3Pos3 = true) {
+				E3Pos3 = false;
+				E3Pos4 = true;
+				Enemy3.setBounds((int) E3Position4, 275, 100, 100);
+			}
+			if (E3Pos4 = true) {
+				E3Pos4 = false;
+				E3Pos5 = true;
+				Enemy3.setBounds((int) E3Position5, 275, 100, 100);
+			}
+			if (E3Pos5 = true) {
+				E3Pos5 = false;
+				E3Pos6 = true;
+				Enemy3.setBounds((int) E3Position6, 275, 100, 100);
+			}
+			System.out.println("loop ends");
+			if (!playing) {
+				break;
+				
+			}
+
+		}
+	}
+}
+	
+}
